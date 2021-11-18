@@ -1,24 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import List from './components/List'
+import AddToList from './components/AddToList';
+
+export interface IState {
+
+  dynaman: {
+    title: string
+    name: string
+    numeral: number
+    dream: string
+    weapon: string
+    attack: string
+    image1983: string
+    image2011?: string
+    }[]
+}
 
 function App() {
+
+  const [dynaman, setDynaman] = useState<IState['dynaman']>([
+    {
+      name:'Hokuto Dan',
+      title: 'DynaRed',
+      numeral: 1,
+      dream: 'To create an engine that does not cause pollution',
+      weapon: 'Dyna Swords',
+      attack: 'Yume no Tsubasa wo',
+      image1983: 'https://static.wikia.nocookie.net/powerrangers/images/2/2e/DynaRed.PNG'
+    }
+  ])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Kagaku Sentai Dynaman</h1>
+      <List dynaman={dynaman} />
+      <AddToList dynaman={dynaman} setDynaman={setDynaman} />
     </div>
   );
 }
